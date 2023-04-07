@@ -6,32 +6,32 @@ const Cart = ({ products,addToCart, setAddToCart, setCartCount, cartCount }) => 
   let totalPrice = 0;
   console.log('cartCount =>',cartCount);
 
-function findByID(id){
-  let obj = products.find(o => o.id === id);
-  return obj
-}
-
-function jasem(){
-  let j = []
-  for (const prop in addToCart) {
-    for (let i = 0; i < parseInt(addToCart[prop]); i++){
-      totalPrice = totalPrice + findByID(prop).price;
-    }
-     j.push(
-        <CartItem
-          key = {prop}
-          title = {findByID(prop).title}
-          price = {findByID(prop).price}
-          id = {prop}
-          addToCart = {addToCart}
-          setAddToCart = {setAddToCart}
-          setCartCount = {setCartCount}
-          cartCount = {cartCount}
-          sku = {findByID(prop).sku}
-        />
-     )
+  function findByID(id){
+    let obj = products.find(o => o.id === Number(id));
+    return obj
   }
-  return (j)
+
+  function cartItem(){
+    let cartItems = []
+    for (const id in addToCart) {
+      for (let i = 0; i < parseInt(addToCart[id]); i++){
+        totalPrice = totalPrice + findByID(id)?.price;
+      }
+      cartItems.push(
+        <CartItem
+          key={id}
+          title={findByID(id)?.title}
+          price={findByID(id)?.price}
+          id={id}
+          addToCart={addToCart}
+          setAddToCart={setAddToCart}
+          setCartCount={setCartCount}
+          cartCount={cartCount}
+          sku={findByID(id)?.sku}
+        />
+      )
+    }
+    return (cartItems)
   }
 
 
@@ -43,7 +43,7 @@ function jasem(){
         {cartCount === 0 ? <p>No items in cart.</p> : null}
         
         {
-          jasem()
+          cartItem()
         }
 
         <h2>Total: ${totalPrice}</h2>

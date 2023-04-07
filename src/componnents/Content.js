@@ -6,36 +6,31 @@ import { useEffect, useState } from "react";
 export default function Content ({allSize, products,addToCart, setAddToCart, setCartCount, cartCount}) {    
     const [filterdProducts, setfilterdProducts] = useState(products)
     
-    function filterSize(){
-      
-      if (products.length === 0){
-        return
-      }
-      if (Object.keys(allSize).length === 0 && products.length > 0){
-        setfilterdProducts(products)
-        return
-      }
-
-      let tmpData = []
-      for (let i = 0; i < products.length; i++){
-        for(let j = 0; j < products[i].availableSizes.length; j++){
-          if (allSize.hasOwnProperty(products[i].availableSizes[j])){
-            tmpData.push(products[i])
-            break
+    useEffect(() => {
+      function filterSize(){
+        if (products.length === 0){
+          return
+        }
+        if (Object.keys(allSize).length === 0 && products.length > 0){
+          setfilterdProducts(products)
+          return
+        }
+        let tmpData = []
+        for (let i = 0; i < products.length; i++){
+          for(let j = 0; j < products[i].availableSizes.length; j++){
+            if (allSize.hasOwnProperty(products[i].availableSizes[j])){
+              tmpData.push(products[i])
+              break
+            }
           }
         }
+        setfilterdProducts(tmpData)
       }
-      setfilterdProducts(tmpData)
-    }
-    
-    useEffect(() => {
       filterSize()
-    }, [allSize]) 
-    
+    }, [allSize, products]) 
     
     return (
         <Grid container spacing={5} >
-        
         {
           filterdProducts?.map((product, index)=> {
           return (
@@ -51,8 +46,6 @@ export default function Content ({allSize, products,addToCart, setAddToCart, set
           )
           })
         }
-
-
         </Grid>
     )
 } 

@@ -66,7 +66,7 @@ const CartItem = ({ title, price, id, addToCart,setAddToCart, setCartCount, cart
           </Button>
         </div>
       </div>
-      <img src={imageUrlFront} alt={''} />
+      {sku && <img src={imageUrlFront} alt={''} />}
     </Wrapper>
   );
 };

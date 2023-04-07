@@ -19,7 +19,7 @@ export default function CheckBox({setAllSite, allSize}) {
       }
     }
   return (
-    <FormGroup row='true'>
+    <FormGroup row={true}>
       <FormControlLabel
         value='XS'
         label="XS"
