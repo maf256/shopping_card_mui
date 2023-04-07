@@ -1,19 +1,16 @@
-import { Grid, Badge, Drawer, LinearProgress, IconButton } from "@mui/material";
+import { Grid, Badge, Drawer, IconButton } from "@mui/material";
 import Content from "./componnents/Content";
 import CheckBox from './componnents/CheckBox'
 import React from "react";
 import { useEffect, useState } from "react";
 import Cart from "./componnents/Cart";
-import { AddShoppingCart } from "@material-ui/icons";
+import { AddShoppingCart } from "@mui/icons-material";
 import styled from "styled-components";
-
-
 
 
 function App() {
   const [allSize, setAllSite] = React.useState({})  
   const [cartOpen, setCartOpen] = React.useState(false);
-  // const [cartItems, setCartItems] = React.useState([]);
   const [products, setProducts] = useState([])
   const [addToCart, setAddToCart] = useState({})
   const [cartCount, setCartCount] = useState(0)
@@ -48,7 +45,7 @@ function App() {
       </Drawer>
       <StyledButton onClick={() => setCartOpen(true)}>
         <Badge badgeContent={cartCount} color="error">
-          <AddShoppingCart />
+          <AddShoppingCart /> 
         </Badge>
       </StyledButton>
       <Grid container direction={"column"}>

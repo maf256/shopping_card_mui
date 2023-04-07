@@ -1,4 +1,4 @@
-import { Button } from "@material-ui/core";
+import { Button } from "@mui/material";
 import CartItem from "./CartItam";
 import styled from "styled-components";
 
@@ -7,7 +7,7 @@ const Cart = ({ products,addToCart, setAddToCart, setCartCount, cartCount }) => 
   console.log('cartCount =>',cartCount);
 
 function findByID(id){
-  let obj = products.find(o => o.id == id);
+  let obj = products.find(o => o.id === id);
   return obj
 }
 
